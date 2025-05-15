@@ -1,0 +1,10 @@
+#!/usr/bin/env -S buf generate --template
+---
+version: v2
+plugins:
+  - local: protoc-gen-go
+    out: gen
+    opt: paths=source_relative
+  - local: protoc-gen-connect-go
+    out: gen
+    opt: paths=source_relative

@@ -1,0 +1,10 @@
+version: "3"
+
+tasks:
+  db:
+    cmd: docker run -e PGPASSWORD=secret -it --rm --net=host postgres psql -h localhost -p 5432 -U postgres rovinj
+  db:migrate:
+    dir: ./db
+    cmd: PGPASSWORD=secret psqldef -h localhost -U postgres rovinj --enable-drop-table < schema.sql
+  db:seed:
+    cmd: docker run -e PGPASSWORD=secret -it --rm --net=host -v ./db:/db postgres psql -h localhost -p 5432 -U postgres rovinj -f /db/seed.sql
